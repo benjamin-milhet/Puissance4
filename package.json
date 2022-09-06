@@ -1,8 +1,13 @@
 {
   "name": "puissance4",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "dependencies": {
+    "easytimer.js": "^4.3.1",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1",
+    "password-hash": "^1.2.2",
+    "socket.io": "^4.0.1"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
