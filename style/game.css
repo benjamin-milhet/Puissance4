@@ -1,0 +1,202 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:900i');
+
+body{
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
+    background-color: #1A1717;
+    font-family: "Oswald", sans-serif;
+    font-style: italic;
+    margin: 0;
+}
+
+playground{
+    grid-column: 2 / 8;
+    grid-row: 1;
+    justify-content: center;
+    align-items: center;
+    margin: 5vh;
+    margin-top: 10vh;
+}
+
+#titreAccueil1{
+    padding-left: 2em;
+    font-size: 3em;
+    color: gold;
+    white-space: nowrap;
+}
+
+#titreAccueil2{
+    color: orangered;
+}
+
+.accueilFooter{
+    position: fixed;
+    bottom:0;
+    width: 100%;
+    height: 7%;
+    padding: 0;
+    background-color: #231A7A;
+    color: whitesmoke;
+    text-align: right;
+}
+
+#createur{
+    padding-right: 10%;;
+}
+
+.sectionaccueil{
+    padding-left: 10%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 65%;
+    left: 50%;
+}
+
+.wrapperPDC {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 80%;
+    left: 50%;
+}
+
+.cta {
+    display: flex;
+    padding: 10px 45px;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 40px;
+    color: white;
+    background: orangered;
+    transition: 1s;
+    box-shadow: 6px 6px 0 black;
+    transform: skewX(-15deg);
+}
+
+.cta:focus {
+    outline: none;
+}
+
+.cta:hover {
+    transition: 0.5s;
+    box-shadow: 10px 10px 0 dodgerblue;
+}
+
+.cta span:nth-child(2) {
+    transition: 0.5s;
+    margin-right: 0;
+}
+
+.cta:hover  span:nth-child(2) {
+    transition: 0.5s;
+    margin-right: 45px;
+}
+
+span {
+    transform: skewX(15deg)
+}
+
+span:nth-child(2) {
+    width: 20px;
+    margin-left: 30px;
+    position: relative;
+    top: 12%;
+}
+
+path.one {
+    transition: 0.4s;
+    transform: translateX(-60%);
+}
+
+path.two {
+    transition: 0.5s;
+    transform: translateX(-30%);
+}
+
+.cta:hover path.three {
+    animation: color_anim 1s infinite 0.2s;
+}
+
+.cta:hover path.one {
+    transform: translateX(0%);
+    animation: color_anim 1s infinite 0.6s;
+}
+
+.cta:hover path.two {
+    transform: translateX(0%);
+    animation: color_anim 1s infinite 0.4s;
+}
+
+@keyframes color_anim {
+    0% {
+        fill: white;
+    }
+    50% {
+        fill: dodgerblue;
+    }
+    100% {
+        fill: white;
+    }
+}
+
+.container {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 35%;
+    left: 50%;
+}
+
+.containerLobby{
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 20%;
+    left: 50%;
+}
+
+.glitch {
+    color: dodgerblue;
+    position: relative;
+    font-size: 9vw;
+    text-shadow: -5px 0 gold;
+    animation: glitch 5s 5s infinite;
+}
+
+.glitchLobby{
+    color: dodgerblue;
+    position: relative;
+    font-size: 6vw;
+    text-shadow: -5px 0 gold;
+    animation: glitch 5s 5s infinite;
+}
+
+
+@keyframes fudge {
+    from {
+        transform: translate(0px, 0px);
+    }
+    to {
+        transform: translate(0px, 2%);
+    }
+}
+
+.glow {
+    text-shadow: 0 0 1000px dodgerblue;
+    color: transparent;
+    position: absolute;
+    top: 0;
+}
+
+
+
+
+

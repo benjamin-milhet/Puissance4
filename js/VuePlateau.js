@@ -23,6 +23,10 @@ export class VuePlateau {
                 minidiv.className = "case"; // On lui donne la classe case
                 minidiv.style.display = 'inline-block'; // On lui donne la propriete display
                 minidiv.innerHTML = donne;
+                minidiv.style.backgroundColor = "dodgerblue"; // On lui donne la propriete background-color
+                minidiv.style.width = "100px"; // On lui donne la propriete width
+                minidiv.style.height = "100px"; // On lui donne la propriete height
+                minidiv.style.border = "1px solid black"; // On lui donne la propriete border
                 //img.className = "imgCase"; // On lui donne la classe imgCase
 
                 //if (donne != "V") img.src = '../images/' + donne + '.png'; // On lui donne l'image correspondante
