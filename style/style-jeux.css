@@ -1,0 +1,52 @@
+#jeu {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#jeu .plateau {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#jeu .plateau .ligne {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#jeu .plateau .ligne .case {
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#jeu .plateau .ligne .case .pion {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: white;
+}
+
+#jeu .plateau .ligne .case .pion.joueur1 {
+    background-color: red;
+}
+
+#jeu .plateau .ligne .case .pion.joueur2 {
+    background-color: yellow;
+}
