@@ -32,7 +32,21 @@ export class VuePlateau {
 
             });
 
+
             emplacement.appendChild(div); // On ajoute la ligne dans le plateau de jeu
-        });
+        });    
+        
+        const plateau = document.querySelector('.plateau');
+        const controlContainer = document.createElement('div');
+        controlContainer.classList.add('control-container');
+        plateau.after(controlContainer);
+
+        for (let i = 0; i < 7; i++) {
+            const button = document.createElement('button');
+            button.classList.add('control-button');
+            button.setAttribute('data-column', i);
+            button.innerHTML = '↑';
+            controlContainer.appendChild(button);
+        }
     }
 }

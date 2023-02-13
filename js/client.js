@@ -5,3 +5,6 @@ window.addEventListener("load", () => {
     let vuePlateau = new VuePlateau();
     vuePlateau.afficherPlateau();
 });
+
+
+
