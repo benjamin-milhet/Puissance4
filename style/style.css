@@ -49,13 +49,22 @@ body{
     left: 50%;
 }
 
+.wrapperText {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 45%;
+    left: 50%;
+}
+
 .wrapperPDC {
     display: flex;
     justify-content: center;
     position: absolute;
     transform: translate(-50%, -50%);
     top: 75%;
-    left: 49%;
+    left: 49.5%;
 }
 
 .cta {
@@ -140,7 +149,7 @@ path.two {
 .container {
     position: absolute;
     transform: translate(-50%, -50%);
-    top: 35%;
+    top: 25%;
     left: 50%;
 }
 
@@ -184,7 +193,24 @@ path.two {
     top: 0;
 }
 
-
+input[type="text"] {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5em;
+    padding: 0.5em;
+    border: none;
+    border-radius: 5px;
+    background-color: whitesmoke;
+    color: #1A1717;
+    box-shadow: 2px 2px 0 orangered;
+    transition: 0.3s;
+    text-align: center;
+}
+    
+input[type="text"]:focus {
+    outline: none;
+    box-shadow: 4px 4px 0 orangered;
+    transform: translate(2px, 2px);
+}
 
 
 

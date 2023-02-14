@@ -24,3 +24,40 @@ app.get('/games/game-lobby', (req, res) => {
 http.listen(port, () => {
     console.log("Server running !");
 });
+
+let rooms = [];
+
+io.on('connection', (socket) => {
+    console.log("New connection !" + socket.id);
+
+    socket.on('playerData', (data) => {
+        console.log("Player data received !");
+        console.log(data);
+
+        let room = null;
+
+        if (!data.roomId) {
+            room = createRoom(data);
+            console.log("Room created !");
+        }
+    });
+
+    socket.on('disconnect', () => {
+        console.log("User disconnected !");
+    });
+});
+ 
+function createRoom(player) {
+    const room = { id: generateRoomId(), players: [] };
+
+    player.roomId = room.id;
+
+    room.players.push(player);
+    rooms.push(room);
+
+    return room;
+}
+
+function generateRoomId() {
+    return Math.random().toString(36).substr(2, 9);
+}
