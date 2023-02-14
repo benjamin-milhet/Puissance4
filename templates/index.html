@@ -8,7 +8,7 @@
     <title>Accueil - Puissance 4</title>
 </head>
 <body>
-<header class = "accueilHeader">
+<header class="accueilHeader">
   <div class="container">
     <div class="glitch" data-text="Puissance4">Puissance 4</div>
     <div class="glow">Puissance 4</div>
@@ -39,7 +39,7 @@
   <br>
 
     <div class="wrapperPDC">
-      <a class="cta" href="/games/game-lobby">
+      <a class="cta" href="/games/room-lobby">
         <span>REJOINDRE</span>
         <span>
         <svg width="66px" height="43px" viewBox="0 0 66 43" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -61,6 +61,8 @@
 </footer>
 
 
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 
 <script>
@@ -72,6 +74,7 @@
       // Ajouter le paramètre "username" à l'URL de la page suivante
       var nextUrl = '/games/game-lobby?username=' + username;
 
+      
       // Rediriger vers la page suivante avec le paramètre "username"
       window.location.href = nextUrl;
     });

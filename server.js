@@ -9,6 +9,7 @@ const port = 1825;
 app.use(express.static('public'));
 app.use("/style/style.css", express.static(__dirname + '/style/style.css'));
 app.use("/style/style-jeux.css", express.static(__dirname + '/style/style-jeux.css'));
+app.use("/style/style-room.css", express.static(__dirname + '/style/style-room.css'));
 app.use("/js/client.js", express.static(__dirname + '/js/client.js'));
 app.use("/js/VuePlateau.js", express.static(__dirname + '/js/VuePlateau.js'));
 app.use("/images/fav4.ico", express.static(__dirname + '/images/fav4.ico'));
@@ -19,6 +20,10 @@ app.get('/', (req, res) => {
 
 app.get('/games/game-lobby', (req, res) => {
     res.sendFile(__dirname + '/templates/games/game-lobby.html');
+});
+
+app.get('/games/room-lobby', (req, res) => {
+    res.sendFile(__dirname + '/templates/games/room-lobby.html');
 });
 
 http.listen(port, () => {

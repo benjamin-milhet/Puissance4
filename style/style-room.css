@@ -1,0 +1,117 @@
+#buttonRetour {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    bottom: 10%;
+    left: 50%;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background-color: orangered;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .button:hover {
+    cursor: pointer;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+  }
+
+
+  .room-carousel {
+    position: relative;
+    margin: 30px auto;
+    width: 80%;
+    height: 500px;
+  }
+  
+  .carousel-container {
+    position: relative;
+    height: 100%;
+  }
+  
+  .slick-carousel {
+    height: 100%;
+  }
+  
+  .slick-slide {
+    height: 100%;
+    padding: 0 10px;
+    box-sizing: border-box;
+    float: left;
+  }
+  
+  .room-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .room-card-header {
+    padding: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .room-card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  .room-card-footer {
+    padding: 10px;
+    font-size: 14px;
+    text-align: center;
+    border-top: 1px solid #ccc;
+  }
+  
+  .carousel-arrows {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+  }
+  
+  .prev-arrow,
+  .next-arrow {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    font-size: 24px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+  
+  .prev-arrow {
+    left: 10px;
+  }
+  
+  .next-arrow {
+    right: 10px;
+  }
+  

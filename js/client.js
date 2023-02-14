@@ -26,6 +26,12 @@ window.addEventListener("load", () => {
     player.turn = true;
     player.socketId = socket.id;
 
+    if (url.searchParams.get("roomId")) {
+        player.roomId = url.searchParams.get("roomId");
+        player.host = false;
+        player.turn = false;
+    }
+
     console.log(player);
 
     socket.emit("playerData", player);
