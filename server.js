@@ -39,7 +39,29 @@ io.on('connection', (socket) => {
         if (!data.roomId) {
             room = createRoom(data);
             console.log("Room created !");
+        } else {
+            room = rooms.find(room => room.id === data.roomId);
+            console.log("Room found !");
+
+            if (room === undefined) {
+                return;
+            }
+
+            room.players.push(data);
         }
+
+        socket.join(room.id);
+        io.to(socket.id).emit('roomData', room.id);
+
+        if (room.players.length === 2) {
+            io.to(room.id).emit('startGame', room.players);
+        }
+
+    });
+
+    socket.on('getRooms', () => {
+        console.log("Get rooms !");
+        io.to(socket.id).emit('rooms', rooms);
     });
 
     socket.on('disconnect', () => {
