@@ -17,24 +17,26 @@
   <div class="scanlines"></div>
 </header>
 
+<div class="wrapperText">
+  <input type="text" name="username" id="username" minlength="2" maxlength="20" placeholder="Nom d'utilisateur" required>
+</div>
+
+<div id="position-room">
+  <div class="room-carousel">
+      
+  </div>
+</div>
+
+<div id="buttonRetour">
+  <a href="/" class="button">Retour</a>
+</div>
+
+
 <footer class = "accueilFooter">
   <h3 id="createur">@author : <a style="color: aliceblue;" href="https://github.com/benjamin-milhet">Benjamin MILHET</a></h3>
 </footer>
 
 
-<div class="room-carousel">
-    <div class="carousel-container">
-      <div class="slick-carousel">
-        <!-- La liste des rooms sera générée ici automatiquement -->
-      </div>
-    </div>
-  </div>
-  
-
-
-<div id="buttonRetour">
-    <a href="/" class="button">Retour</a>
-</div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <script src="/socket.io/socket.io.js"></script>
@@ -55,9 +57,11 @@ socket.emit('getRooms');
 socket.on('rooms', (rooms) => {
  // Créer le template HTML pour une room
  function createRoomTemplate(room) {
+  var username = $('#username').val();
+
     return `
-      <div class="room">
-        <h3>${room.id}</h3>
+      <div class="room-card">
+        <h3><a href="/games/game-lobby?username=${username}&roomId=${room.id}">${room.id}</a></h3>
         <p>${room.players.length} players</p>
       </div>
     `;
@@ -72,8 +76,11 @@ socket.on('rooms', (rooms) => {
   // Initialiser le carrousel avec slick.js
   $carousel.slick({
     arrows: true,
+    dots: true,
     slidesToShow: 3,
-    slidesToScroll: 1,
+    slidesToScroll: 2,
+    autoplay: true,
+    autoplaySpeed: 2000,
     responsive: [
       {
         breakpoint: 768,
