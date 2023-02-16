@@ -70,7 +70,7 @@ socket.on('rooms', (rooms) => {
   // Remplir le carrousel avec les données des rooms
   let $carousel = $('.room-carousel');
   rooms.forEach(room => {
-    $carousel.append(createRoomTemplate(room));
+    if (room.players.length < 2) $carousel.append(createRoomTemplate(room));
   });
 
   // Initialiser le carrousel avec slick.js

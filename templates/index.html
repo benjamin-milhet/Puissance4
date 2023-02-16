@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../style/style.css">
+    <link rel="stylesheet" type="text/css" href="../style/style-jeux.css">
     <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
     <link rel="icon" href="../images/fav4.ico" />
     <title>Accueil - Puissance 4</title>
 </head>
 <body>
-<header class="accueilHeader">
+<header class="accueilHeader" id="titre">
   <div class="container">
     <div class="glitch" data-text="Puissance4">Puissance 4</div>
     <div class="glow">Puissance 4</div>
@@ -16,8 +17,8 @@
   <div class="scanlines"></div>
 </header>
 
-<main class="mainAccueil">
-    <div class="wrapperText">
+<main class="mainAccueil" id="mainAccueil">
+    <div class="wrapperText" >
         <input type="text" name="username" id="username" minlength="2" maxlength="20" placeholder="Nom d'utilisateur" required>
     </div>
 
@@ -56,32 +57,28 @@
 
 </main>
 
+<div id="jeu">
+
+
+  <playground id="plateau" class="plateau">
+
+  </playground>
+
+
+  <div id="buttonRetour">
+      <a href="/" class="button">Retour</a>
+  </div>
+
+</div>
+
 <footer class = "accueilFooter">
   <h3 id="createur">@author : <a style="color: aliceblue;" href="https://github.com/benjamin-milhet">Benjamin MILHET</a></h3>
 </footer>
 
 
 
-
+<script src="/socket.io/socket.io.js"></script>
+<script src="../../js/client.js" type="module"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-
-<script>
-  $(document).ready(function() {
-    $('#bouton-jouer').click(function() {
-      // Récupérer la valeur de l'input avec l'id "username"
-      var username = $('#username').val();
-
-      // Ajouter le paramètre "username" à l'URL de la page suivante
-      var nextUrl = '/games/game-lobby?username=' + username;
-
-      
-      // Rediriger vers la page suivante avec le paramètre "username"
-      window.location.href = nextUrl;
-    });
-  });
-
-</script>
-
-
 </body>
 </html>

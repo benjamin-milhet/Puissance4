@@ -11,32 +11,54 @@ const player = {
     win: false
 };
 
+
 const socket = io();
 
-window.addEventListener("load", () => {
-    console.log("Page loaded !");
-    let vuePlateau = new VuePlateau();
-    vuePlateau.afficherPlateau();
 
-    let url = new URL(window.location.href);
-    let username = url.searchParams.get("username");
+socket.on("startGame", (players) => {
+    console.log("Start game !");
+    console.log(players);
 
-    player.username = username;
-    player.host = true;
-    player.turn = true;
-    player.socketId = socket.id;
-
-    if (url.searchParams.get("roomId")) {
-        player.roomId = url.searchParams.get("roomId");
-        player.host = false;
-        player.turn = false;
-    }
-
-    console.log(player);
-
-    socket.emit("playerData", player);
+    startGame(players);
 });
 
+function startGame(players) {
+    document.getElementById("controle-container").style.display = "in-line";
+}
 
+$(document).ready(function() {
+    $('#bouton-jouer').click(function() {
+        // Récupérer la valeur de l'input avec l'id "username"
+        var username = $('#username').val();
+
+        player.username = username;
+        player.host = true;
+        player.turn = true;
+        player.socketId = socket.id;
+        
+        let url = new URL(window.location.href);
+
+        if (url.searchParams.get("roomId")) {
+            player.roomId = url.searchParams.get("roomId");
+            player.host = false;
+            player.turn = false;
+        }
+
+        console.log(player);
+
+        $("#mainAccueil").css("display", "none");
+        $("#titre").css("display", "none");
+
+
+        let vuePlateau = new VuePlateau();
+        vuePlateau.afficherPlateau();
+
+        $(".button").css("display", "inline-block");
+        $("#controle-container").css("display", "inline-block");
+
+
+        socket.emit("playerData", player);
+    });
+  });
 
 

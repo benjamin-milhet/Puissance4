@@ -39,6 +39,7 @@ export class VuePlateau {
         const plateau = document.querySelector('.plateau');
         const controlContainer = document.createElement('div');
         controlContainer.classList.add('control-container');
+        controlContainer.id = 'control-container';
         plateau.after(controlContainer);
 
         for (let i = 0; i < 7; i++) {
@@ -46,7 +47,9 @@ export class VuePlateau {
             button.classList.add('control-button');
             button.setAttribute('data-column', i);
             button.innerHTML = '↑';
+            button.disabled = true;
             controlContainer.appendChild(button);
         }
+
     }
 }

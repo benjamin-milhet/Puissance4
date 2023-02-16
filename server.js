@@ -43,6 +43,7 @@ io.on('connection', (socket) => {
 
         if (!data.roomId) {
             room = createRoom(data);
+            console.log(data.socketId);
             console.log("Room created !");
         } else {
             room = rooms.find(room => room.id === data.roomId);
@@ -54,11 +55,14 @@ io.on('connection', (socket) => {
 
             room.players.push(data);
         }
+        
+        //data.socketId = socket.id;
 
         socket.join(room.id);
         io.to(socket.id).emit('roomData', room.id);
 
         if (room.players.length === 2) {
+            console.log("Start game !");
             io.to(room.id).emit('startGame', room.players);
         }
 
@@ -71,6 +75,18 @@ io.on('connection', (socket) => {
 
     socket.on('disconnect', () => {
         console.log("User disconnected !");
+
+        let room = null;
+
+        rooms.forEach(r => {
+            r.players.forEach(p => {
+                console.log(p.socketId + " " + socket.id);
+                if (p.socketId === socket.id && p.host) {
+                    room = r;
+                    rooms = rooms.filter(r => r !== room);
+                }
+            })
+        })
     });
 });
  
