@@ -48,6 +48,7 @@ io.on('connection', (socket) => {
         } else {
             room = rooms.find(room => room.id === data.roomId);
             console.log("Room found !");
+            data.socketId = socket.id;
 
             if (room === undefined) {
                 return;

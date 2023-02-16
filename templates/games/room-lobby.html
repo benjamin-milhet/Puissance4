@@ -61,7 +61,7 @@ socket.on('rooms', (rooms) => {
 
     return `
       <div class="room-card">
-        <h3><a href="/games/game-lobby?username=${username}&roomId=${room.id}">${room.id}</a></h3>
+        <h3><a href="/?username=${username}&roomId=${room.id}">${room.id}</a></h3>
         <p>${room.players.length} players</p>
       </div>
     `;

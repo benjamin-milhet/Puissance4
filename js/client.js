@@ -23,7 +23,40 @@ socket.on("startGame", (players) => {
 });
 
 function startGame(players) {
-    document.getElementById("controle-container").style.display = "in-line";
+    $(".control-button").prop("disabled", false);
+}
+
+window.onload = function() {
+    // Récupérer la valeur de l'input avec l'id "username"
+    
+    
+    let url = new URL(window.location.href);
+
+    if (url.searchParams.get("roomId")) {
+        player.roomId = url.searchParams.get("roomId");
+        player.host = false;
+        player.turn = false;
+
+        var username = $('#username').val();
+        player.username = username;
+        player.socketId = socket.id;
+    
+        console.log(player);
+
+        $("#mainAccueil").css("display", "none");
+        $("#titre").css("display", "none");
+
+
+        let vuePlateau = new VuePlateau();
+        vuePlateau.afficherPlateau();
+
+        $(".button").css("display", "inline-block");
+
+
+        socket.emit("playerData", player);
+    }
+
+    
 }
 
 $(document).ready(function() {
@@ -54,7 +87,6 @@ $(document).ready(function() {
         vuePlateau.afficherPlateau();
 
         $(".button").css("display", "inline-block");
-        $("#controle-container").css("display", "inline-block");
 
 
         socket.emit("playerData", player);
