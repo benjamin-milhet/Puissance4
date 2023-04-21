@@ -96,8 +96,13 @@ $(document).ready(function() {
         const divs = document.querySelectorAll(".case");
         for (let i = 0; i < divs.length; i++) {
             divs[i].addEventListener("click", function() {
-                console.log("La div numéro " + (i+1) + " a été cliquée par " + player.username + " avec la couleur " + player.symbol + " !");
-                vuePlateau.ajouterPion(i, player.symbol);
+                if (player.turn === true) {
+                    console.log("La div numéro " + (i+1) + " a été cliquée par " + player.username + " avec la couleur " + player.symbol + " !");
+                    vuePlateau.ajouterPion(i, player.symbol);
+                    player.turn = false;
+                } else {
+                    console.log("Ce n'est pas votre tour !");
+                }
             });
         }
     });
