@@ -23,13 +23,12 @@ socket.on("startGame", (players) => {
 });
 
 function startGame(players) {
-    $(".control-button").prop("disabled", false);
+
 }
 
 window.onload = function() {
     // Récupérer la valeur de l'input avec l'id "username"
-    
-    
+
     let url = new URL(window.location.href);
 
     if (url.searchParams.get("roomId")) {
@@ -49,11 +48,18 @@ window.onload = function() {
 
         let vuePlateau = new VuePlateau();
         vuePlateau.afficherPlateau();
+        console.log("Etape 2");
 
         $(".button").css("display", "inline-block");
 
-
         socket.emit("playerData", player);
+
+        const divs = document.querySelectorAll(".case");
+        for (let i = 0; i < divs.length; i++) {
+            divs[i].addEventListener("click", function() {
+                console.log("La div numéro " + (i+1) + " a été cliquée !");
+            });
+        }
     }
 
     
@@ -88,9 +94,18 @@ $(document).ready(function() {
 
         $(".button").css("display", "inline-block");
 
-
         socket.emit("playerData", player);
+
+        const divs = document.querySelectorAll(".case");
+        for (let i = 0; i < divs.length; i++) {
+            divs[i].addEventListener("click", function() {
+                console.log("La div numéro " + (i+1) + " a été cliquée par " + player.username + " avec la couleur " + player.symbol + " !");
+                vuePlateau.ajouterPion(i, player.symbol);
+            });
+        }
     });
+
   });
+
 
 
