@@ -42,7 +42,7 @@ export class VuePlateau {
     ajouterPion(colonne, couleur) {
         // Faire que la colonne soit un multiple de nombre de colonne
         colonne = colonne % niveau[0].length;
-        let ligne = 5;
+        let ligne= 5;
         while (niveau[ligne][colonne] !== 0) {
             ligne--;
         }
@@ -53,6 +53,17 @@ export class VuePlateau {
         // Changer la couleur du rond de la classe case:before en fonction de la couleur du joueur
         div.classList.remove('case');
         div.classList.add('pion' + couleur);
-
     }
+
+    verifierCase(colonne){
+        let res = true
+        colonne = colonne % niveau[0].length;
+        let ligne= 5;
+        while (niveau[ligne][colonne] !== 0 && ligne > 0) {
+            ligne--;
+        }
+        if (ligne < 0) res = false;
+        return res
+    }
+
 }

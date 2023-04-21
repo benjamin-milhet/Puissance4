@@ -4,6 +4,7 @@ const app = express();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const fs = require('fs');
+const {compileETag} = require("express/lib/utils");
 const port = 1825;
 
 app.use(express.static('public'));
@@ -63,20 +64,21 @@ io.on('connection', (socket) => {
         io.to(socket.id).emit('roomData', room.id);
 
         if (room.players.length === 2) {
-            console.log("Start game !");
             io.to(room.id).emit('startGame', room.players);
         }
 
     });
 
+    socket.on('playedCell', (data) => {
+        io.to(data.roomId).emit('playedCell', data);
+
+    });
+
     socket.on('getRooms', () => {
-        console.log("Get rooms !");
         io.to(socket.id).emit('rooms', rooms);
     });
 
     socket.on('disconnect', () => {
-        console.log("User disconnected !");
-
         let room = null;
 
         rooms.forEach(r => {
