@@ -1,4 +1,4 @@
-import { VuePlateau }  from "./VuePlateau.js";
+import {VuePlateau} from "./VuePlateau.js";
 
 const player = {
     host: false,
@@ -36,8 +36,7 @@ window.onload = function() {
         player.host = false;
         player.turn = false;
 
-        var username = $('#username').val();
-        player.username = username;
+        player.username = $('#username').val();
         player.socketId = socket.id;
     
         console.log(player);
@@ -68,9 +67,7 @@ window.onload = function() {
 $(document).ready(function() {
     $('#bouton-jouer').click(function() {
         // Récupérer la valeur de l'input avec l'id "username"
-        var username = $('#username').val();
-
-        player.username = username;
+        player.username = $('#username').val();
         player.host = true;
         player.turn = true;
         player.socketId = socket.id;

@@ -43,7 +43,7 @@ export class VuePlateau {
         // Faire que la colonne soit un multiple de nombre de colonne
         colonne = colonne % niveau[0].length;
         let ligne = 5;
-        while (niveau[ligne][colonne] != 0) {
+        while (niveau[ligne][colonne] !== 0) {
             ligne--;
         }
         niveau[ligne][colonne] = couleur;
@@ -54,10 +54,5 @@ export class VuePlateau {
         div.classList.remove('case');
         div.classList.add('pion' + couleur);
 
-    }
-
-    clearPlateau() {
-        const plateau = document.querySelector('.plateau');
-        plateau.innerHTML = '';
     }
 }
