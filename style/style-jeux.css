@@ -137,6 +137,8 @@
     border: none;
     box-shadow: 0 5px 10px rgba(0,0,0,0.1);
     transition: all 0.3s ease-in-out;
+    font-family: "Oswald", sans-serif;
+    font-style: italic;
   }
   
   .button:hover {
@@ -167,4 +169,27 @@
   .control-button:hover {
     background-color: #444;
   }
+
+
+.lien-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.lien-input {
+    display: none;
+    width: 500px;
+    height: 25px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+
+
+
   

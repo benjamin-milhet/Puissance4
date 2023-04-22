@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../style/style.css">
@@ -19,7 +19,7 @@
 
 <main class="mainAccueil" id="mainAccueil">
     <div class="wrapperText" >
-        <input type="text" name="username" id="username" minlength="2" maxlength="20" placeholder="Nom d'utilisateur" required>
+        <input type="text" class="input-nom" name="username" id="username" minlength="2" maxlength="20" placeholder="Nom d'utilisateur" required>
     </div>
 
 
@@ -64,6 +64,10 @@
 
   </playground>
 
+  <div class="lien-container">
+      <input type="text" id="lien-input" class="lien-input input-lien" value="">
+      <button id="btnCopier" class="button" onclick="copierLien()">Copier</button>
+  </div>
 
   <div id="buttonRetour">
       <a href="/" class="button">Retour</a>
@@ -75,10 +79,19 @@
   <h3 id="createur">@author : <a style="color: aliceblue;" href="https://github.com/benjamin-milhet">Benjamin MILHET</a></h3>
 </footer>
 
-
+<script>
+    function copierLien() {
+        var copyText = document.getElementById("lien-input");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999)
+        document.execCommand("copy");
+    }
+</script>
 
 <script src="/socket.io/socket.io.js"></script>
 <script src="../../js/client.js" type="module"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+
 </body>
 </html>

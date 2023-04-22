@@ -25,6 +25,10 @@ socket.on("startGame", (players) => {
 
 socket.on("roomData", (data) => {
     player.roomId = data
+
+    let url = new URL(window.location.href);
+    let input = document.getElementById("lien-input");
+    input.value = url.origin + url.pathname + "?roomId=" + data;
 });
 
 socket.on("playedCell", (data) => {
@@ -36,6 +40,8 @@ socket.on("playedCell", (data) => {
 
 function startGame(players) {
     console.log(players);
+    $("#btnCopier").css("display", "none");
+    $(".lien-input").css("display", "none");
 
     if (players[0].socketId === socket.id) {
         player.turn = true;
@@ -46,6 +52,11 @@ window.onload = function() {
     // Récupérer la valeur de l'input avec l'id "username"
 
     let url = new URL(window.location.href);
+
+    if (!url.searchParams.get("username")) {
+        let username = prompt("Quel est votre username ?");
+        $('#username').val(username);
+    }
 
     if (url.searchParams.get("roomId")) {
         player.roomId = url.searchParams.get("roomId");
@@ -67,19 +78,18 @@ window.onload = function() {
         console.log("Etape 2");
 
         $(".button").css("display", "inline-block");
+        $("#btnCopier").css("display", "none");
 
         socket.emit("playerData", player);
 
         const divs = document.querySelectorAll(".case");
         for (let i = 0; i < divs.length; i++) {
             divs[i].addEventListener("click", function() {
-                console.log("La div numéro " + (i+1) + " a été cliquée !");
                 if (player.turn === true) {
-                    console.log("La div numéro " + (i+1) + " a été cliquée par " + player.username + " avec la couleur " + player.symbol + " !");
                     player.turn = false;
                     socket.emit("playedCell", {roomId: player.roomId, socketId: player.socketId, cell: i, symbol: player.symbol});
                 } else {
-                    console.log("Ce n'est pas votre tour !");
+                    alert("Ce n'est pas votre tour !")
                 }
             });
         }
@@ -112,6 +122,7 @@ $(document).ready(function() {
         vuePlateau.afficherPlateau();
 
         $(".button").css("display", "inline-block");
+        $(".lien-input").css("display", "inline-block");
 
         socket.emit("playerData", player);
 
@@ -119,13 +130,10 @@ $(document).ready(function() {
         for (let i = 0; i < divs.length; i++) {
             divs[i].addEventListener("click", function() {
                 if (player.turn === true) {
-                    console.log("La div numéro " + (i+1) + " a été cliquée par " + player.username + " avec la couleur " + player.symbol + " !");
                     player.turn = false;
-                    console.log(player.roomId)
-                    console.log(player)
                     socket.emit("playedCell", {roomId: player.roomId, socketId: player.socketId, cell: i, symbol: player.symbol});
                 } else {
-                    console.log("Ce n'est pas votre tour !");
+                    alert("Ce n'est pas votre tour !")
                 }
             });
         }

@@ -193,7 +193,7 @@ path.two {
     top: 0;
 }
 
-input[type="text"] {
+.input-nom {
     font-family: 'Poppins', sans-serif;
     font-size: 1.5em;
     padding: 0.5em;
@@ -205,11 +205,22 @@ input[type="text"] {
     transition: 0.3s;
     text-align: center;
 }
-    
-input[type="text"]:focus {
+
+.input-nom:focus {
     outline: none;
     box-shadow: 4px 4px 0 orangered;
     transform: translate(2px, 2px);
+}
+
+
+.input-lien {
+    font-family: 'Poppins', sans-serif;
+    padding: 0.5em;
+    border: none;
+    background-color: whitesmoke;
+    color: #1A1717;
+    box-shadow: 2px 2px 0 orangered;
+    text-align: center;
 }
 
 
