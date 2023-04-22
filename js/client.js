@@ -34,18 +34,26 @@ socket.on("roomData", (data) => {
 socket.on("playedCell", (data) => {
     if (vuePlateau.verifierCase(data.cell)) {
         vuePlateau.ajouterPion(data.cell, data.symbol);
-        if (player.socketId !== data.socketId) {
-            player.turn = true;
+        if (vuePlateau.verifierVictoire(data.symbol)) {
+            player.win = true;
+            socket.emit("playerWin", {roomId: player.roomId, symbol: data.symbol});
         } else {
-            player.turn = false;
+            player.turn = player.socketId !== data.socketId;
         }
     } else {
         if (player.socketId === data.socketId) alert("Cette case est déjà prise !");
     }
-    if (vuePlateau.verifierVictoire(data.cell, data.symbol)) {
-        player.win = true;
+
+});
+
+socket.on("playerWin", (data) => {
+    if (player.symbol === data.symbol) {
         alert("Vous avez gagné !");
+    } else {
+        alert("Vous avez perdu !");
     }
+    let url = new URL(window.location.href);
+    window.location.href = url.origin + url.pathname;
 });
 
 
@@ -65,17 +73,12 @@ window.onload = function() {
     let url = new URL(window.location.href);
 
     if (url.searchParams.get("roomId")) {
-        if (!url.searchParams.get("username")) {
-            let username = prompt("Quel est votre username ?");
-            $('#username').val(username);
-        }
+        player.username = prompt("Quel est votre username ?");
 
         player.roomId = url.searchParams.get("roomId");
         player.host = false;
         player.turn = false;
         player.symbol = "yellow";
-
-        player.username = $('#username').val();
         player.socketId = socket.id;
     
         console.log(player);
@@ -111,7 +114,7 @@ window.onload = function() {
 $(document).ready(function() {
     $('#bouton-jouer').click(function() {
         // Récupérer la valeur de l'input avec l'id "username"
-        player.username = $('#username').val();
+        player.username = document.getElementById("username").value;
         player.host = true;
         player.turn = false;
         player.socketId = socket.id;

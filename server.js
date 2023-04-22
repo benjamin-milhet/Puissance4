@@ -78,6 +78,10 @@ io.on('connection', (socket) => {
         io.to(socket.id).emit('rooms', rooms);
     });
 
+    socket.on('playerWin', (data) => {
+        io.to(data.roomId).emit('playerWin', data);
+    });
+
     socket.on('disconnect', () => {
         let room = null;
 

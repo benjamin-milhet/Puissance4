@@ -69,86 +69,66 @@ export class VuePlateau {
         return res
     }
 
-    verifierVictoire(colonne, couleur) {
-        // on parcourt toute les lignes, les colonnes et les diagonales
-        // on compte le nombre de pions de la couleur du joueur
-        // si on en a 4, on renvoie true
-        // sinon on renvoie false
-        let res = false
-        let ligne = 0
-        let compteur = 0
-
-        // on parcourt les lignes
-        while (ligne < 6 && !res) {
-            compteur = 0
-            for (let i = 0; i < 7; i++) {
-                if (niveau[ligne][i] === couleur) {
-                    compteur++
-                } else {
-                    compteur = 0
+    verifierVictoire(player) {
+        // Vérifier les victoires horizontales
+        for (let row = 0; row < 6; row++) {
+            for (let col = 0; col < 4; col++) {
+                if (
+                    niveau[row][col] === player &&
+                    niveau[row][col + 1] === player &&
+                    niveau[row][col + 2] === player &&
+                    niveau[row][col + 3] === player
+                ) {
+                    return true;
                 }
-                if (compteur === 4) {
-                    res = true
-                }
-            }
-            ligne++
-        }
-
-        // on parcourt les colonnes
-        let colonne2 = 0
-        while (colonne2 < 7 && !res) {
-            compteur = 0
-            for (let i = 0; i < 6; i++) {
-                if (niveau[i][colonne2] === couleur) {
-                    compteur++
-                } else {
-                    compteur = 0
-                }
-                if (compteur === 4) {
-                    res = true
-                }
-            }
-            colonne2++
-        }
-
-        // on parcourt les diagonales
-        let ligne2 = 0
-        let colonne3 = 0
-        while (ligne2 < 6 && !res) {
-            compteur = 0
-            for (let i = 0; i < 6; i++) {
-                if (niveau[ligne2][colonne3] === couleur) {
-                    compteur++
-                } else {
-                    compteur = 0
-                }
-                if (compteur === 4) {
-                    res = true
-                }
-                ligne2++
-                colonne3++
             }
         }
 
-        let ligne3 = 0
-        let colonne4 = 6
-        while (ligne3 < 6 && !res) {
-            compteur = 0
-            for (let i = 0; i < 6; i++) {
-                if (niveau[ligne3][colonne4] === couleur) {
-                    compteur++
-                } else {
-                    compteur = 0
+        // Vérifier les victoires verticales
+        for (let row = 0; row < 3; row++) {
+            for (let col = 0; col < 7; col++) {
+                if (
+                    niveau[row][col] === player &&
+                    niveau[row + 1][col] === player &&
+                    niveau[row + 2][col] === player &&
+                    niveau[row + 3][col] === player
+                ) {
+                    return true;
                 }
-                if (compteur === 4) {
-                    res = true
-                }
-                ligne3++
-                colonne4--
             }
         }
 
-        return res
+        // Vérifier les victoires en diagonale vers le haut
+        for (let row = 3; row < 6; row++) {
+            for (let col = 0; col < 4; col++) {
+                if (
+                    niveau[row][col] === player &&
+                    niveau[row - 1][col + 1] === player &&
+                    niveau[row - 2][col + 2] === player &&
+                    niveau[row - 3][col + 3] === player
+                ) {
+                    return true;
+                }
+            }
+        }
+
+        // Vérifier les victoires en diagonale vers le bas
+        for (let row = 0; row < 3; row++) {
+            for (let col = 0; col < 4; col++) {
+                if (
+                    niveau[row][col] === player &&
+                    niveau[row + 1][col + 1] === player &&
+                    niveau[row + 2][col + 2] === player &&
+                    niveau[row + 3][col + 3] === player
+                ) {
+                    return true;
+                }
+            }
+        }
+
+        // Si aucune victoire n'a été trouvée, retourner false
+        return false;
+
     }
 
 }
