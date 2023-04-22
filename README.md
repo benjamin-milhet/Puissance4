@@ -4,3 +4,28 @@
 
 [![Node.js CI](https://github.com/benjamin-milhet/Puissance4/actions/workflows/node.js.yml/badge.svg)](https://github.com/benjamin-milhet/Puissance4/actions/workflows/node.js.yml)
 [![Docker Image CI](https://github.com/benjamin-milhet/Puissance4/actions/workflows/docker-image.yml/badge.svg)](https://github.com/benjamin-milhet/Puissance4/actions/workflows/docker-image.yml)
+
+## Contributor
+ - [Benjamin MILHET](https://github.com/benjamin-milhet)
+ 
+## Lancement des conteneurs
+
+### DOCKER BUILD 
+```
+docker-compose build
+```
+
+### DOCKER RUN
+```
+docker-compose up
+```
+
+ 
+## Rendu final
+### Menu du jeu
+![alt text](https://github.com/benjamin-milhet/Puissance4/blob/main/images/menu.png?raw=true)
+
+### Interface de jeu
+![alt text](https://github.com/benjamin-milhet/Puissance4/blob/main/images/jeu.png?raw=true)
+ 
+ 
