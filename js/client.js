@@ -32,11 +32,22 @@ socket.on("roomData", (data) => {
 });
 
 socket.on("playedCell", (data) => {
-    if (vuePlateau.verifierCase(data.cell)) vuePlateau.ajouterPion(data.cell, data.symbol);
-    if (player.socketId !== data.socketId) {
-        player.turn = true;
+    if (vuePlateau.verifierCase(data.cell)) {
+        vuePlateau.ajouterPion(data.cell, data.symbol);
+        if (player.socketId !== data.socketId) {
+            player.turn = true;
+        } else {
+            player.turn = false;
+        }
+    } else {
+        if (player.socketId === data.socketId) alert("Cette case est déjà prise !");
+    }
+    if (vuePlateau.verifierVictoire(data.cell, data.symbol)) {
+        player.win = true;
+        alert("Vous avez gagné !");
     }
 });
+
 
 function startGame(players) {
     console.log(players);
@@ -86,7 +97,6 @@ window.onload = function() {
         for (let i = 0; i < divs.length; i++) {
             divs[i].addEventListener("click", function() {
                 if (player.turn === true) {
-                    player.turn = false;
                     socket.emit("playedCell", {roomId: player.roomId, socketId: player.socketId, cell: i, symbol: player.symbol});
                 } else {
                     alert("Ce n'est pas votre tour !")
@@ -130,7 +140,6 @@ $(document).ready(function() {
         for (let i = 0; i < divs.length; i++) {
             divs[i].addEventListener("click", function() {
                 if (player.turn === true) {
-                    player.turn = false;
                     socket.emit("playedCell", {roomId: player.roomId, socketId: player.socketId, cell: i, symbol: player.symbol});
                 } else {
                     alert("Ce n'est pas votre tour !")

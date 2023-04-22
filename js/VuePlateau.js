@@ -59,10 +59,95 @@ export class VuePlateau {
         let res = true
         colonne = colonne % niveau[0].length;
         let ligne= 5;
-        while (niveau[ligne][colonne] !== 0 && ligne > 0) {
+        while (niveau[ligne][colonne] !== 0 && res) {
             ligne--;
+            if (ligne < 0){
+                res = false
+                ligne = 5
+            }
         }
-        if (ligne < 0) res = false;
+        return res
+    }
+
+    verifierVictoire(colonne, couleur) {
+        // on parcourt toute les lignes, les colonnes et les diagonales
+        // on compte le nombre de pions de la couleur du joueur
+        // si on en a 4, on renvoie true
+        // sinon on renvoie false
+        let res = false
+        let ligne = 0
+        let compteur = 0
+
+        // on parcourt les lignes
+        while (ligne < 6 && !res) {
+            compteur = 0
+            for (let i = 0; i < 7; i++) {
+                if (niveau[ligne][i] === couleur) {
+                    compteur++
+                } else {
+                    compteur = 0
+                }
+                if (compteur === 4) {
+                    res = true
+                }
+            }
+            ligne++
+        }
+
+        // on parcourt les colonnes
+        let colonne2 = 0
+        while (colonne2 < 7 && !res) {
+            compteur = 0
+            for (let i = 0; i < 6; i++) {
+                if (niveau[i][colonne2] === couleur) {
+                    compteur++
+                } else {
+                    compteur = 0
+                }
+                if (compteur === 4) {
+                    res = true
+                }
+            }
+            colonne2++
+        }
+
+        // on parcourt les diagonales
+        let ligne2 = 0
+        let colonne3 = 0
+        while (ligne2 < 6 && !res) {
+            compteur = 0
+            for (let i = 0; i < 6; i++) {
+                if (niveau[ligne2][colonne3] === couleur) {
+                    compteur++
+                } else {
+                    compteur = 0
+                }
+                if (compteur === 4) {
+                    res = true
+                }
+                ligne2++
+                colonne3++
+            }
+        }
+
+        let ligne3 = 0
+        let colonne4 = 6
+        while (ligne3 < 6 && !res) {
+            compteur = 0
+            for (let i = 0; i < 6; i++) {
+                if (niveau[ligne3][colonne4] === couleur) {
+                    compteur++
+                } else {
+                    compteur = 0
+                }
+                if (compteur === 4) {
+                    res = true
+                }
+                ligne3++
+                colonne4--
+            }
+        }
+
         return res
     }
 
