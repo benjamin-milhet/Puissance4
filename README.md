@@ -6,6 +6,10 @@
 [![Docker Image CI](https://github.com/benjamin-milhet/Puissance4/actions/workflows/docker-image.yml/badge.svg)](https://github.com/benjamin-milhet/Puissance4/actions/workflows/docker-image.yml)
 [![Docker](https://github.com/benjamin-milhet/Puissance4/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/benjamin-milhet/Puissance4/actions/workflows/docker-publish.yml)
 
+## Description
+
+Ce projet consisté à reproduire le très célèbre jeu de société puissance 4 a l'aide du framework node js pour pouvoir jouer en temps réel. L'objectif du jeu est de réussir à être le premier joueur à aligner 4 jetons.
+
 ## Contributor
  - [Benjamin MILHET](https://github.com/benjamin-milhet)
  
