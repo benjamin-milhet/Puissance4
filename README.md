@@ -4,6 +4,7 @@
 
 [![Node.js CI](https://github.com/benjamin-milhet/Puissance4/actions/workflows/node.js.yml/badge.svg)](https://github.com/benjamin-milhet/Puissance4/actions/workflows/node.js.yml)
 [![Docker Image CI](https://github.com/benjamin-milhet/Puissance4/actions/workflows/docker-image.yml/badge.svg)](https://github.com/benjamin-milhet/Puissance4/actions/workflows/docker-image.yml)
+[![Docker](https://github.com/benjamin-milhet/Puissance4/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/benjamin-milhet/Puissance4/actions/workflows/docker-publish.yml)
 
 ## Contributor
  - [Benjamin MILHET](https://github.com/benjamin-milhet)
