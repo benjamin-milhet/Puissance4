@@ -20,6 +20,14 @@ docker-compose build
 docker-compose up
 ```
 
+## Roadmap
+
+- - [x] Première version jouable
+- - [ ] Notification avec le thème du site
+- - [ ] Menu de personnalisation d'une partie
+  - - [ ] Partie privée
+  - - [ ] Choix des couleurs
+  - - [ ] Personnalisation de la taille de la grille 
  
 ## Rendu final
 ### Menu du jeu
