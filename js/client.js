@@ -53,12 +53,12 @@ window.onload = function() {
 
     let url = new URL(window.location.href);
 
-    if (!url.searchParams.get("username")) {
-        let username = prompt("Quel est votre username ?");
-        $('#username').val(username);
-    }
-
     if (url.searchParams.get("roomId")) {
+        if (!url.searchParams.get("username")) {
+            let username = prompt("Quel est votre username ?");
+            $('#username').val(username);
+        }
+
         player.roomId = url.searchParams.get("roomId");
         player.host = false;
         player.turn = false;
