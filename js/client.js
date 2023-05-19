@@ -17,6 +17,7 @@ const socket = io();
 
 
 socket.on("startGame", (players) => {
+    showAlert("La partie va commencer !");
     console.log("Start game !");
     console.log(players);
 
@@ -86,13 +87,14 @@ function startGame(players) {
     }
 }
 
-window.onload = function() {
+window.onload = async function() {
     // Récupérer la valeur de l'input avec l'id "username"
 
     let url = new URL(window.location.href);
 
     if (url.searchParams.get("roomId")) {
-        player.username = prompt("Quel est votre username ?");
+        player.username = "";
+        player.username = await showPrompt("Quel est votre username ?");
 
         player.roomId = url.searchParams.get("roomId");
         player.host = false;
@@ -189,4 +191,24 @@ window.onclick = function(event) {
         popup.style.display = "none";
     }
 }
+
+let prompt = document.getElementById('prompt');
+let closePrompt = document.getElementById('closePrompt');
+let promptValue = '';
+let promptSubmitButton = document.getElementById('prompt-submit');
+let promptInput = document.getElementById('prompt-input');
+
+function showPrompt(message) {
+    document.getElementById('prompt-message').textContent = message;
+    prompt.style.display = "block";
+
+    return new Promise((resolve) => {
+        promptSubmitButton.onclick = function() {
+            promptValue = promptInput.value;
+            prompt.style.display = "none";
+            resolve(promptValue); // résout la promesse avec la valeur saisie
+        };
+    });
+}
+
 
