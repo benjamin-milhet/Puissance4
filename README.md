@@ -28,6 +28,7 @@ docker-compose up
 ## Roadmap
 
 - - [x] Première version jouable
+- - [x] Indicateur de tour
 - - [ ] Notification avec le thème du site
 - - [ ] Menu de personnalisation d'une partie
   - - [ ] Partie privée

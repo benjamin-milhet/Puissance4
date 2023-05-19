@@ -40,6 +40,16 @@ socket.on("playedCell", (data) => {
         } else {
             player.turn = player.socketId !== data.socketId;
         }
+
+        if (player.turn === true && player.symbol === "red") {
+            $("#currentPlayer").css("background-color", "orangered");
+        } else if (player.turn === true && player.symbol === "yellow") {
+            $("#currentPlayer").css("background-color", "gold");
+        } else if (player.turn !== true && player.symbol === "red") {
+            $("#currentPlayer").css("background-color", "gold");
+        } else if (player.turn !== true && player.symbol === "yellow") {
+            $("#currentPlayer").css("background-color", "orangered");
+        }
     } else {
         if (player.socketId === data.socketId) alert("Cette case est déjà prise !");
     }
@@ -61,6 +71,15 @@ function startGame(players) {
     console.log(players);
     $("#btnCopier").css("display", "none");
     $(".lien-input").css("display", "none");
+    $(".indicator-container").css("display", "flex");
+
+    if (player.symbol === "red") {
+        $("#yourColor").css("background-color", "orangered");
+    } else {
+        $("#yourColor").css("background-color", "gold");
+    }
+
+    $("#currentPlayer").css("background-color", "orangered");
 
     if (players[0].socketId === socket.id) {
         player.turn = true;

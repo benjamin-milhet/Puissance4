@@ -189,6 +189,35 @@
     margin-right: 10px;
 }
 
+.indicator {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.indicator-container {
+    display: none;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.indicator-container > div {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    margin-left: 50px;
+    flex-direction: row;
+}
+
+.colorText {
+    font-size: 18px;
+    margin-left: 10px;
+    margin-right: 10px;
+    color: #fff;
+}
+
+
 
 
 
