@@ -16,8 +16,8 @@ let vuePlateau = new VuePlateau();
 const socket = io();
 
 
-socket.on("startGame", (players) => {
-    showAlert("La partie va commencer !");
+socket.on("startGame", async (players) => {
+    await showAlert("La partie va commencer !");
     console.log("Start game !");
     console.log(players);
 
@@ -32,7 +32,7 @@ socket.on("roomData", (data) => {
     input.value = url.origin + url.pathname + "?roomId=" + data;
 });
 
-socket.on("playedCell", (data) => {
+socket.on("playedCell", async (data) => {
     if (vuePlateau.verifierCase(data.cell)) {
         vuePlateau.ajouterPion(data.cell, data.symbol);
         if (vuePlateau.verifierVictoire(data.symbol)) {
@@ -52,16 +52,16 @@ socket.on("playedCell", (data) => {
             $("#currentPlayer").css("background-color", "orangered");
         }
     } else {
-        if (player.socketId === data.socketId) showAlert("Cette case est déjà prise !");
+        if (player.socketId === data.socketId) await showAlert("Cette case est déjà prise !");
     }
 
 });
 
-socket.on("playerWin", (data) => {
+socket.on("playerWin", async (data) => {
     if (player.symbol === data.symbol) {
-        showAlert("Vous avez gagné !");
+        await showAlert("Vous avez gagné !");
     } else {
-        showAlert("Vous avez perdu !");
+        await showAlert("Vous avez perdu !");
     }
     let url = new URL(window.location.href);
     window.location.href = url.origin + url.pathname;
@@ -119,11 +119,11 @@ window.onload = async function() {
 
         const divs = document.querySelectorAll(".case");
         for (let i = 0; i < divs.length; i++) {
-            divs[i].addEventListener("click", function() {
+            divs[i].addEventListener("click", async() => {
                 if (player.turn === true) {
                     socket.emit("playedCell", {roomId: player.roomId, socketId: player.socketId, cell: i, symbol: player.symbol});
                 } else {
-                    showAlert("Ce n'est pas votre tour !")
+                    await showAlert("Ce n'est pas votre tour !")
                 }
             });
         }
@@ -162,11 +162,11 @@ $(document).ready(function() {
 
         const divs = document.querySelectorAll(".case");
         for (let i = 0; i < divs.length; i++) {
-            divs[i].addEventListener("click", function() {
+            divs[i].addEventListener("click", async() =>{
                 if (player.turn === true) {
                     socket.emit("playedCell", {roomId: player.roomId, socketId: player.socketId, cell: i, symbol: player.symbol});
                 } else {
-                    showAlert("Ce n'est pas votre tour !")
+                    await showAlert("Ce n'est pas votre tour !")
                 }
             });
         }
@@ -174,22 +174,24 @@ $(document).ready(function() {
 
   });
 
-let popup = document.getElementById('popup');
-let close = document.getElementById('close');
+const alert = document.getElementById('alert');
 
 function showAlert(message) {
-    document.getElementById('popup-message').textContent = message;
-    popup.style.display = "block";
-}
+    const alertClose = document.getElementById('alert-close');
+    const alertMessage = document.getElementById('alert-message');
 
-close.onclick = function() {
-    popup.style.display = "none";
-}
+    alertMessage.textContent = message;
+    alert.style.display = "block";
 
-window.onclick = function(event) {
-    if (event.target == popup) {
-        popup.style.display = "none";
-    }
+    return new Promise((resolve) => {
+        const closeHandler = function() {
+            alert.style.display = "none";
+            alertClose.removeEventListener('click', closeHandler);
+            resolve();
+        };
+
+        alertClose.addEventListener('click', closeHandler);
+    });
 }
 
 let prompt = document.getElementById('prompt');
