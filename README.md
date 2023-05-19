@@ -30,6 +30,8 @@ docker-compose up
 - - [x] Première version jouable
 - - [x] Indicateur de tour
 - - [ ] Notification avec le thème du site
+  - - [x] Notification avec message
+  - - [ ] Notification avec zone de saisie
 - - [ ] Menu de personnalisation d'une partie
   - - [ ] Partie privée
   - - [ ] Choix des couleurs

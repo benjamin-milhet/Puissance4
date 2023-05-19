@@ -51,16 +51,16 @@ socket.on("playedCell", (data) => {
             $("#currentPlayer").css("background-color", "orangered");
         }
     } else {
-        if (player.socketId === data.socketId) alert("Cette case est déjà prise !");
+        if (player.socketId === data.socketId) showAlert("Cette case est déjà prise !");
     }
 
 });
 
 socket.on("playerWin", (data) => {
     if (player.symbol === data.symbol) {
-        alert("Vous avez gagné !");
+        showAlert("Vous avez gagné !");
     } else {
-        alert("Vous avez perdu !");
+        showAlert("Vous avez perdu !");
     }
     let url = new URL(window.location.href);
     window.location.href = url.origin + url.pathname;
@@ -121,7 +121,7 @@ window.onload = function() {
                 if (player.turn === true) {
                     socket.emit("playedCell", {roomId: player.roomId, socketId: player.socketId, cell: i, symbol: player.symbol});
                 } else {
-                    alert("Ce n'est pas votre tour !")
+                    showAlert("Ce n'est pas votre tour !")
                 }
             });
         }
@@ -164,7 +164,7 @@ $(document).ready(function() {
                 if (player.turn === true) {
                     socket.emit("playedCell", {roomId: player.roomId, socketId: player.socketId, cell: i, symbol: player.symbol});
                 } else {
-                    alert("Ce n'est pas votre tour !")
+                    showAlert("Ce n'est pas votre tour !")
                 }
             });
         }
@@ -172,4 +172,21 @@ $(document).ready(function() {
 
   });
 
+let popup = document.getElementById('popup');
+let close = document.getElementById('close');
+
+function showAlert(message) {
+    document.getElementById('popup-message').textContent = message;
+    popup.style.display = "block";
+}
+
+close.onclick = function() {
+    popup.style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target == popup) {
+        popup.style.display = "none";
+    }
+}
 
